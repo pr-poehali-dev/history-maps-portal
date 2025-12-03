@@ -72,66 +72,354 @@ const gradeLevels: GradeLevel[] = [
 const mapEvents: MapEvent[] = [
   {
     id: '1',
-    year: -753,
-    title: 'Основание Рима',
-    description: 'Легендарное основание города Рима братьями Ромулом и Рэмом',
-    coordinates: { x: 50, y: 45 },
+    year: -3100,
+    title: 'Объединение Египта',
+    description: 'Фараон Менес объединил Верхний и Нижний Египет',
+    coordinates: { x: 58, y: 60 },
     period: 'ancient'
   },
   {
     id: '2',
-    year: -490,
-    title: 'Марафонская битва',
-    description: 'Решающее сражение греко-персидских войн',
-    coordinates: { x: 65, y: 42 },
+    year: -2500,
+    title: 'Строительство пирамид в Гизе',
+    description: 'Возведение пирамиды Хеопса - одного из чудес света',
+    coordinates: { x: 58, y: 58 },
     period: 'ancient'
   },
   {
     id: '3',
-    year: 1066,
-    title: 'Битва при Гастингсе',
-    description: 'Нормандское завоевание Англии',
-    coordinates: { x: 38, y: 28 },
-    period: 'medieval'
+    year: -1750,
+    title: 'Законы Хаммурапи',
+    description: 'Создание первого письменного свода законов в Вавилоне',
+    coordinates: { x: 64, y: 55 },
+    period: 'ancient'
   },
   {
     id: '4',
-    year: 1453,
-    title: 'Падение Константинополя',
-    description: 'Конец Византийской империи',
-    coordinates: { x: 72, y: 48 },
-    period: 'medieval'
+    year: -1200,
+    title: 'Троянская война',
+    description: 'Легендарная война греков против Трои',
+    coordinates: { x: 60, y: 48 },
+    period: 'ancient'
   },
   {
     id: '5',
-    year: 1492,
-    title: 'Открытие Америки',
-    description: 'Христофор Колумб достиг берегов Нового Света',
-    coordinates: { x: 15, y: 55 },
-    period: 'modern'
+    year: -776,
+    title: 'Первые Олимпийские игры',
+    description: 'Начало традиции Олимпийских игр в Древней Греции',
+    coordinates: { x: 56, y: 47 },
+    period: 'ancient'
   },
   {
     id: '6',
-    year: 1789,
-    title: 'Великая французская революция',
-    description: 'Начало эпохи революций в Европе',
-    coordinates: { x: 45, y: 35 },
-    period: 'modern'
+    year: -753,
+    title: 'Основание Рима',
+    description: 'Легендарное основание города Рима братьями Ромулом и Рэмом',
+    coordinates: { x: 52, y: 45 },
+    period: 'ancient'
   },
   {
     id: '7',
-    year: 1945,
-    title: 'Окончание Второй мировой войны',
-    description: 'Победа над фашизмом',
-    coordinates: { x: 55, y: 30 },
-    period: 'contemporary'
+    year: -490,
+    title: 'Марафонская битва',
+    description: 'Решающее сражение греко-персидских войн',
+    coordinates: { x: 57, y: 47 },
+    period: 'ancient'
   },
   {
     id: '8',
+    year: -334,
+    title: 'Походы Александра Македонского',
+    description: 'Начало великих завоеваний на Восток',
+    coordinates: { x: 60, y: 48 },
+    period: 'ancient'
+  },
+  {
+    id: '9',
+    year: -221,
+    title: 'Объединение Китая',
+    description: 'Император Цинь Шихуанди объединил Китай',
+    coordinates: { x: 85, y: 50 },
+    period: 'ancient'
+  },
+  {
+    id: '10',
+    year: -44,
+    title: 'Убийство Юлия Цезаря',
+    description: 'Заговор сенаторов против римского диктатора',
+    coordinates: { x: 52, y: 45 },
+    period: 'ancient'
+  },
+  {
+    id: '11',
+    year: 476,
+    title: 'Падение Западной Римской империи',
+    description: 'Конец античности и начало Средневековья',
+    coordinates: { x: 52, y: 45 },
+    period: 'medieval'
+  },
+  {
+    id: '12',
+    year: 622,
+    title: 'Хиджра пророка Мухаммеда',
+    description: 'Переселение в Медину - начало исламского летоисчисления',
+    coordinates: { x: 66, y: 58 },
+    period: 'medieval'
+  },
+  {
+    id: '13',
+    year: 800,
+    title: 'Коронация Карла Великого',
+    description: 'Возрождение империи на Западе',
+    coordinates: { x: 48, y: 40 },
+    period: 'medieval'
+  },
+  {
+    id: '14',
+    year: 988,
+    title: 'Крещение Руси',
+    description: 'Князь Владимир принял христианство',
+    coordinates: { x: 62, y: 38 },
+    period: 'medieval'
+  },
+  {
+    id: '15',
+    year: 1054,
+    title: 'Великий раскол церкви',
+    description: 'Разделение христианства на католичество и православие',
+    coordinates: { x: 60, y: 48 },
+    period: 'medieval'
+  },
+  {
+    id: '16',
+    year: 1066,
+    title: 'Битва при Гастингсе',
+    description: 'Нормандское завоевание Англии',
+    coordinates: { x: 42, y: 32 },
+    period: 'medieval'
+  },
+  {
+    id: '17',
+    year: 1206,
+    title: 'Провозглашение Чингисхана',
+    description: 'Объединение монгольских племён',
+    coordinates: { x: 78, y: 42 },
+    period: 'medieval'
+  },
+  {
+    id: '18',
+    year: 1215,
+    title: 'Великая хартия вольностей',
+    description: 'Ограничение власти короля в Англии',
+    coordinates: { x: 42, y: 32 },
+    period: 'medieval'
+  },
+  {
+    id: '19',
+    year: 1337,
+    title: 'Начало Столетней войны',
+    description: 'Конфликт между Англией и Францией',
+    coordinates: { x: 44, y: 38 },
+    period: 'medieval'
+  },
+  {
+    id: '20',
+    year: 1380,
+    title: 'Куликовская битва',
+    description: 'Победа Дмитрия Донского над Мамаем',
+    coordinates: { x: 68, y: 36 },
+    period: 'medieval'
+  },
+  {
+    id: '21',
+    year: 1453,
+    title: 'Падение Константинополя',
+    description: 'Конец Византийской империи и взятие города турками',
+    coordinates: { x: 60, y: 48 },
+    period: 'medieval'
+  },
+  {
+    id: '22',
+    year: 1492,
+    title: 'Открытие Америки',
+    description: 'Христофор Колумб достиг берегов Нового Света',
+    coordinates: { x: 18, y: 55 },
+    period: 'modern'
+  },
+  {
+    id: '23',
+    year: 1517,
+    title: 'Начало Реформации',
+    description: 'Мартин Лютер выступил против католической церкви',
+    coordinates: { x: 50, y: 35 },
+    period: 'modern'
+  },
+  {
+    id: '24',
+    year: 1588,
+    title: 'Разгром Непобедимой армады',
+    description: 'Поражение испанского флота от Англии',
+    coordinates: { x: 40, y: 32 },
+    period: 'modern'
+  },
+  {
+    id: '25',
+    year: 1618,
+    title: 'Начало Тридцатилетней войны',
+    description: 'Крупнейший религиозный конфликт в Европе',
+    coordinates: { x: 50, y: 38 },
+    period: 'modern'
+  },
+  {
+    id: '26',
+    year: 1649,
+    title: 'Казнь короля Карла I',
+    description: 'Английская революция достигла апогея',
+    coordinates: { x: 42, y: 32 },
+    period: 'modern'
+  },
+  {
+    id: '27',
+    year: 1703,
+    title: 'Основание Санкт-Петербурга',
+    description: 'Пётр I заложил новую столицу России',
+    coordinates: { x: 62, y: 28 },
+    period: 'modern'
+  },
+  {
+    id: '28',
+    year: 1776,
+    title: 'Декларация независимости США',
+    description: 'Рождение нового государства',
+    coordinates: { x: 22, y: 45 },
+    period: 'modern'
+  },
+  {
+    id: '29',
+    year: 1789,
+    title: 'Великая французская революция',
+    description: 'Начало эпохи революций в Европе',
+    coordinates: { x: 46, y: 38 },
+    period: 'modern'
+  },
+  {
+    id: '30',
+    year: 1812,
+    title: 'Отечественная война',
+    description: 'Наполеон вторгся в Россию',
+    coordinates: { x: 64, y: 34 },
+    period: 'modern'
+  },
+  {
+    id: '31',
+    year: 1861,
+    title: 'Отмена крепостного права',
+    description: 'Александр II освободил крестьян в России',
+    coordinates: { x: 64, y: 34 },
+    period: 'modern'
+  },
+  {
+    id: '32',
+    year: 1914,
+    title: 'Начало Первой мировой войны',
+    description: 'Крупнейший конфликт начала XX века',
+    coordinates: { x: 52, y: 38 },
+    period: 'contemporary'
+  },
+  {
+    id: '33',
+    year: 1917,
+    title: 'Октябрьская революция',
+    description: 'Большевики захватили власть в России',
+    coordinates: { x: 62, y: 30 },
+    period: 'contemporary'
+  },
+  {
+    id: '34',
+    year: 1929,
+    title: 'Великая депрессия',
+    description: 'Мировой экономический кризис',
+    coordinates: { x: 22, y: 45 },
+    period: 'contemporary'
+  },
+  {
+    id: '35',
+    year: 1939,
+    title: 'Начало Второй мировой войны',
+    description: 'Германия напала на Польшу',
+    coordinates: { x: 54, y: 36 },
+    period: 'contemporary'
+  },
+  {
+    id: '36',
+    year: 1945,
+    title: 'Окончание Второй мировой войны',
+    description: 'Победа над фашизмом',
+    coordinates: { x: 55, y: 35 },
+    period: 'contemporary'
+  },
+  {
+    id: '37',
+    year: 1945,
+    title: 'Ядерные бомбардировки Японии',
+    description: 'Первое применение атомного оружия',
+    coordinates: { x: 88, y: 50 },
+    period: 'contemporary'
+  },
+  {
+    id: '38',
+    year: 1949,
+    title: 'Образование КНР',
+    description: 'Провозглашение Китайской Народной Республики',
+    coordinates: { x: 85, y: 50 },
+    period: 'contemporary'
+  },
+  {
+    id: '39',
     year: 1961,
     title: 'Первый полет человека в космос',
     description: 'Юрий Гагарин совершил исторический полет',
-    coordinates: { x: 80, y: 25 },
+    coordinates: { x: 70, y: 32 },
+    period: 'contemporary'
+  },
+  {
+    id: '40',
+    year: 1969,
+    title: 'Высадка на Луну',
+    description: 'Нил Армстронг - первый человек на Луне',
+    coordinates: { x: 22, y: 48 },
+    period: 'contemporary'
+  },
+  {
+    id: '41',
+    year: 1989,
+    title: 'Падение Берлинской стены',
+    description: 'Символ окончания холодной войны',
+    coordinates: { x: 51, y: 35 },
+    period: 'contemporary'
+  },
+  {
+    id: '42',
+    year: 1991,
+    title: 'Распад СССР',
+    description: 'Конец Советского Союза',
+    coordinates: { x: 64, y: 32 },
+    period: 'contemporary'
+  },
+  {
+    id: '43',
+    year: 2001,
+    title: 'Теракт 11 сентября',
+    description: 'Трагедия в Нью-Йорке, изменившая мир',
+    coordinates: { x: 22, y: 46 },
+    period: 'contemporary'
+  },
+  {
+    id: '44',
+    year: 2008,
+    title: 'Мировой финансовый кризис',
+    description: 'Крупнейший экономический кризис со времён Великой депрессии',
+    coordinates: { x: 22, y: 46 },
     period: 'contemporary'
   }
 ];
