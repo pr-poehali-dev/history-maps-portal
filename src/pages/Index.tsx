@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { toast } from '@/hooks/use-toast';
 
 interface HistoricalPeriod {
   id: string;
@@ -446,10 +450,56 @@ export default function Index() {
   const [selectedGrade, setSelectedGrade] = useState<number | null>(null);
   const [selectedPeriod, setSelectedPeriod] = useState<string>('all');
   const [activeView, setActiveView] = useState<'home' | 'grades' | 'maps' | 'periods'>('home');
+  const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
+  const [selectedEventForUpload, setSelectedEventForUpload] = useState<string | null>(null);
+  const [events, setEvents] = useState<MapEvent[]>(mapEvents);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const filteredEvents = mapEvents.filter(event => 
+  const filteredEvents = events.filter(event => 
     selectedPeriod === 'all' || event.period === selectedPeriod
   );
+
+  const handleImageUpload = (eventId: string) => {
+    setSelectedEventForUpload(eventId);
+    setUploadDialogOpen(true);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      toast({
+        title: 'Ошибка',
+        description: 'Пожалуйста, выберите изображение',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const imageUrl = event.target?.result as string;
+      
+      setEvents(prevEvents => 
+        prevEvents.map(ev => 
+          ev.id === selectedEventForUpload 
+            ? { ...ev, mapImage: imageUrl }
+            : ev
+        )
+      );
+
+      toast({
+        title: 'Успешно',
+        description: 'Карта загружена!'
+      });
+
+      setUploadDialogOpen(false);
+      setSelectedEventForUpload(null);
+    };
+    
+    reader.readAsDataURL(file);
+  };
 
   const getGradePeriods = () => {
     if (!selectedGrade) return [];
@@ -764,7 +814,7 @@ export default function Index() {
               {filteredEvents.map((event) => {
                 const period = historicalPeriods.find(p => p.id === event.period);
                 return (
-                  <Card key={event.id} className="hover:shadow-lg transition-all duration-300 overflow-hidden group cursor-pointer">
+                  <Card key={event.id} className="hover:shadow-lg transition-all duration-300 overflow-hidden group relative">
                     {event.mapImage && (
                       <div className="relative h-48 overflow-hidden">
                         <img 
@@ -791,7 +841,18 @@ export default function Index() {
                     </CardHeader>
                     <CardContent>
                       <p className="text-sm text-muted-foreground mb-3">{event.description}</p>
-                      <Badge variant="outline" className="text-xs">{period?.name}</Badge>
+                      <div className="flex items-center justify-between">
+                        <Badge variant="outline" className="text-xs">{period?.name}</Badge>
+                        <Button 
+                          size="sm" 
+                          variant="ghost"
+                          onClick={() => handleImageUpload(event.id)}
+                          className="gap-1"
+                        >
+                          <Icon name={event.mapImage ? "RefreshCw" : "Upload"} size={14} />
+                          {event.mapImage ? 'Заменить' : 'Загрузить'}
+                        </Button>
+                      </div>
                     </CardContent>
                   </Card>
                 );
@@ -875,6 +936,43 @@ export default function Index() {
           </p>
         </div>
       </footer>
+
+      <Dialog open={uploadDialogOpen} onOpenChange={setUploadDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Загрузить историческую карту</DialogTitle>
+            <DialogDescription>
+              Выберите изображение карты для события. Рекомендуется использовать карты из открытых источников.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="map-upload">Файл изображения</Label>
+              <Input 
+                id="map-upload" 
+                type="file" 
+                accept="image/*"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+              />
+            </div>
+            <div className="bg-muted p-4 rounded-lg space-y-2">
+              <p className="text-sm font-semibold flex items-center gap-2">
+                <Icon name="Info" size={16} />
+                Рекомендуемые источники:
+              </p>
+              <ul className="text-xs text-muted-foreground space-y-1 ml-6">
+                <li>• Wikimedia Commons (commons.wikimedia.org)</li>
+                <li>• Национальные архивы и библиотеки</li>
+                <li>• Образовательные ресурсы с открытой лицензией</li>
+              </ul>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setUploadDialogOpen(false)}>Отмена</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
