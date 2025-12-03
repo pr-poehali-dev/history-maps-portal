@@ -27,6 +27,7 @@ interface MapEvent {
   description: string;
   coordinates: { x: number; y: number };
   period: string;
+  mapImage?: string;
 }
 
 const historicalPeriods: HistoricalPeriod[] = [
@@ -81,7 +82,8 @@ const mapEvents: MapEvent[] = [
     title: 'Объединение Египта',
     description: 'Фараон Менес объединил Верхний и Нижний Египет',
     coordinates: { x: 58, y: 60 },
-    period: 'ancient'
+    period: 'ancient',
+    mapImage: 'https://cdn.poehali.dev/projects/67453f57-e8e6-4849-8048-bc424cd2c1cc/files/82684917-2ed9-4f92-8b50-a4086cf1143e.jpg'
   },
   {
     id: '2',
@@ -121,7 +123,8 @@ const mapEvents: MapEvent[] = [
     title: 'Основание Рима',
     description: 'Легендарное основание города Рима братьями Ромулом и Рэмом',
     coordinates: { x: 52, y: 45 },
-    period: 'ancient'
+    period: 'ancient',
+    mapImage: 'https://cdn.poehali.dev/projects/67453f57-e8e6-4849-8048-bc424cd2c1cc/files/541768f8-dc7e-44bf-9917-f439ab238f75.jpg'
   },
   {
     id: '7',
@@ -129,7 +132,8 @@ const mapEvents: MapEvent[] = [
     title: 'Марафонская битва',
     description: 'Решающее сражение греко-персидских войн',
     coordinates: { x: 57, y: 47 },
-    period: 'ancient'
+    period: 'ancient',
+    mapImage: 'https://cdn.poehali.dev/projects/67453f57-e8e6-4849-8048-bc424cd2c1cc/files/d7f11e2a-ef91-4ca6-8d6f-d7e541031be9.jpg'
   },
   {
     id: '8',
@@ -137,7 +141,8 @@ const mapEvents: MapEvent[] = [
     title: 'Походы Александра Македонского',
     description: 'Начало великих завоеваний на Восток',
     coordinates: { x: 60, y: 48 },
-    period: 'ancient'
+    period: 'ancient',
+    mapImage: 'https://cdn.poehali.dev/projects/67453f57-e8e6-4849-8048-bc424cd2c1cc/files/154f5000-a46f-493b-9dd3-f893d5a0a76c.jpg'
   },
   {
     id: '9',
@@ -233,7 +238,8 @@ const mapEvents: MapEvent[] = [
     title: 'Куликовская битва',
     description: 'Победа Дмитрия Донского над Мамаем',
     coordinates: { x: 68, y: 36 },
-    period: 'medieval'
+    period: 'medieval',
+    mapImage: 'https://cdn.poehali.dev/projects/67453f57-e8e6-4849-8048-bc424cd2c1cc/files/8d7f1aca-9e13-47bd-8ea4-403e476cdfdc.jpg'
   },
   {
     id: '21',
@@ -241,7 +247,8 @@ const mapEvents: MapEvent[] = [
     title: 'Падение Константинополя',
     description: 'Конец Византийской империи и взятие города турками',
     coordinates: { x: 60, y: 48 },
-    period: 'medieval'
+    period: 'medieval',
+    mapImage: 'https://cdn.poehali.dev/projects/67453f57-e8e6-4849-8048-bc424cd2c1cc/files/d041aef7-3dfc-42f3-9719-0bd5885e49e5.jpg'
   },
   {
     id: '22',
@@ -249,7 +256,8 @@ const mapEvents: MapEvent[] = [
     title: 'Открытие Америки',
     description: 'Христофор Колумб достиг берегов Нового Света',
     coordinates: { x: 18, y: 55 },
-    period: 'modern'
+    period: 'modern',
+    mapImage: 'https://cdn.poehali.dev/projects/67453f57-e8e6-4849-8048-bc424cd2c1cc/files/0f24bc99-2348-49c7-88e4-90f228acf0b0.jpg'
   },
   {
     id: '23',
@@ -305,7 +313,8 @@ const mapEvents: MapEvent[] = [
     title: 'Великая французская революция',
     description: 'Начало эпохи революций в Европе',
     coordinates: { x: 46, y: 38 },
-    period: 'modern'
+    period: 'modern',
+    mapImage: 'https://cdn.poehali.dev/projects/67453f57-e8e6-4849-8048-bc424cd2c1cc/files/a55dce0a-12bf-45fc-b8fb-f5768fd3719f.jpg'
   },
   {
     id: '30',
@@ -313,7 +322,8 @@ const mapEvents: MapEvent[] = [
     title: 'Отечественная война',
     description: 'Наполеон вторгся в Россию',
     coordinates: { x: 64, y: 34 },
-    period: 'modern'
+    period: 'modern',
+    mapImage: 'https://cdn.poehali.dev/projects/67453f57-e8e6-4849-8048-bc424cd2c1cc/files/0586ba70-ceb3-4906-88ca-3de84d201e62.jpg'
   },
   {
     id: '31',
@@ -361,7 +371,8 @@ const mapEvents: MapEvent[] = [
     title: 'Окончание Второй мировой войны',
     description: 'Победа над фашизмом',
     coordinates: { x: 55, y: 35 },
-    period: 'contemporary'
+    period: 'contemporary',
+    mapImage: 'https://cdn.poehali.dev/projects/67453f57-e8e6-4849-8048-bc424cd2c1cc/files/496308ec-af20-4c7d-9815-6bc4e2744bc4.jpg'
   },
   {
     id: '37',
@@ -385,7 +396,8 @@ const mapEvents: MapEvent[] = [
     title: 'Первый полет человека в космос',
     description: 'Юрий Гагарин совершил исторический полет',
     coordinates: { x: 70, y: 32 },
-    period: 'contemporary'
+    period: 'contemporary',
+    mapImage: 'https://cdn.poehali.dev/projects/67453f57-e8e6-4849-8048-bc424cd2c1cc/files/0b33e866-504f-4352-9f61-c983ed1b2269.jpg'
   },
   {
     id: '40',
@@ -409,7 +421,8 @@ const mapEvents: MapEvent[] = [
     title: 'Распад СССР',
     description: 'Конец Советского Союза',
     coordinates: { x: 64, y: 32 },
-    period: 'contemporary'
+    period: 'contemporary',
+    mapImage: 'https://cdn.poehali.dev/projects/67453f57-e8e6-4849-8048-bc424cd2c1cc/files/916d4755-b5fb-4b8b-a2cb-99af0a9edb14.jpg'
   },
   {
     id: '43',
@@ -722,8 +735,18 @@ export default function Index() {
                             <div className={`absolute inset-0 w-5 h-5 rounded-full ${period?.color} animate-ping opacity-75`}></div>
                           </div>
                         </div>
-                        <div className="absolute left-8 top-0 bg-card border shadow-xl rounded-lg p-4 min-w-[280px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
-                          <div className="space-y-2">
+                        <div className="absolute left-8 top-0 bg-card border shadow-xl rounded-lg overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20 max-w-sm">
+                          {event.mapImage && (
+                            <div className="relative h-32 overflow-hidden">
+                              <img 
+                                src={event.mapImage} 
+                                alt={event.title}
+                                className="w-full h-full object-cover"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                            </div>
+                          )}
+                          <div className="p-4 space-y-2">
                             <Badge className={period?.color}>{Math.abs(event.year)} {event.year < 0 ? 'до н.э.' : 'н.э.'}</Badge>
                             <h4 className="font-heading font-bold text-lg">{event.title}</h4>
                             <p className="text-sm text-muted-foreground">{event.description}</p>
@@ -737,22 +760,37 @@ export default function Index() {
               </CardContent>
             </Card>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {filteredEvents.map((event) => {
                 const period = historicalPeriods.find(p => p.id === event.period);
                 return (
-                  <Card key={event.id} className="hover:shadow-lg transition-all duration-300">
-                    <CardHeader>
-                      <div className="flex items-center justify-between mb-2">
-                        <Badge className={period?.color}>
+                  <Card key={event.id} className="hover:shadow-lg transition-all duration-300 overflow-hidden group cursor-pointer">
+                    {event.mapImage && (
+                      <div className="relative h-48 overflow-hidden">
+                        <img 
+                          src={event.mapImage} 
+                          alt={event.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                        <Badge className={`absolute top-3 right-3 ${period?.color}`}>
                           {Math.abs(event.year)} {event.year < 0 ? 'до н.э.' : 'н.э.'}
                         </Badge>
-                        <Icon name="MapPin" className="text-primary" size={20} />
                       </div>
+                    )}
+                    <CardHeader className={event.mapImage ? 'pb-3' : ''}>
+                      {!event.mapImage && (
+                        <div className="flex items-center justify-between mb-2">
+                          <Badge className={period?.color}>
+                            {Math.abs(event.year)} {event.year < 0 ? 'до н.э.' : 'н.э.'}
+                          </Badge>
+                          <Icon name="MapPin" className="text-primary" size={20} />
+                        </div>
+                      )}
                       <CardTitle className="font-heading text-lg">{event.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-sm text-muted-foreground mb-2">{event.description}</p>
+                      <p className="text-sm text-muted-foreground mb-3">{event.description}</p>
                       <Badge variant="outline" className="text-xs">{period?.name}</Badge>
                     </CardContent>
                   </Card>
