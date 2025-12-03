@@ -10,6 +10,7 @@ interface HistoricalPeriod {
   years: string;
   color: string;
   description: string;
+  mapImage: string;
 }
 
 interface GradeLevel {
@@ -34,28 +35,32 @@ const historicalPeriods: HistoricalPeriod[] = [
     name: 'Древний мир',
     years: 'до V в. н.э.',
     color: 'bg-primary',
-    description: 'От первобытности до падения Римской империи'
+    description: 'От первобытности до падения Римской империи',
+    mapImage: 'https://cdn.poehali.dev/projects/67453f57-e8e6-4849-8048-bc424cd2c1cc/files/09e74302-3746-436e-aa17-ffeffa3be68b.jpg'
   },
   {
     id: 'medieval',
     name: 'Средневековье',
     years: 'V-XV вв.',
     color: 'bg-secondary',
-    description: 'Эпоха рыцарей, замков и крестовых походов'
+    description: 'Эпоха рыцарей, замков и крестовых походов',
+    mapImage: 'https://cdn.poehali.dev/projects/67453f57-e8e6-4849-8048-bc424cd2c1cc/files/db148adb-a790-4ab2-a593-3bf1463b4c04.jpg'
   },
   {
     id: 'modern',
     name: 'Новое время',
     years: 'XVI-XIX вв.',
     color: 'bg-accent',
-    description: 'Великие географические открытия и промышленная революция'
+    description: 'Великие географические открытия и промышленная революция',
+    mapImage: 'https://cdn.poehali.dev/projects/67453f57-e8e6-4849-8048-bc424cd2c1cc/files/381de725-ad40-4ba3-a9b0-25d84b151a5e.jpg'
   },
   {
     id: 'contemporary',
     name: 'Новейшая история',
     years: 'XX-XXI вв.',
     color: 'bg-destructive',
-    description: 'Мировые войны и современная цивилизация'
+    description: 'Мировые войны и современная цивилизация',
+    mapImage: 'https://cdn.poehali.dev/projects/67453f57-e8e6-4849-8048-bc424cd2c1cc/files/b589a38d-57a5-4845-a2b5-dc34321c3b9c.jpg'
   }
 ];
 
@@ -676,24 +681,35 @@ export default function Index() {
 
             <Card className="overflow-hidden">
               <CardContent className="p-0">
-                <div className="relative w-full h-[600px] bg-gradient-to-br from-blue-50 to-green-50 dark:from-blue-950 dark:to-green-950">
-                  <div className="absolute inset-0 opacity-20">
-                    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                      <defs>
-                        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5"/>
-                        </pattern>
-                      </defs>
-                      <rect width="100%" height="100%" fill="url(#grid)" />
-                    </svg>
-                  </div>
+                <div className="relative w-full h-[600px]">
+                  {selectedPeriod !== 'all' && historicalPeriods.find(p => p.id === selectedPeriod) && (
+                    <img 
+                      src={historicalPeriods.find(p => p.id === selectedPeriod)?.mapImage} 
+                      alt={historicalPeriods.find(p => p.id === selectedPeriod)?.name}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  )}
+                  {selectedPeriod === 'all' && (
+                    <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-50 to-green-50 dark:from-blue-950 dark:to-green-950">
+                      <div className="absolute inset-0 opacity-20">
+                        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                          <defs>
+                            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+                            </pattern>
+                          </defs>
+                          <rect width="100%" height="100%" fill="url(#grid)" />
+                        </svg>
+                      </div>
+                    </div>
+                  )}
 
                   {filteredEvents.map((event, index) => {
                     const period = historicalPeriods.find(p => p.id === event.period);
                     return (
                       <div
                         key={event.id}
-                        className="absolute group cursor-pointer animate-scale-in"
+                        className="absolute group cursor-pointer animate-scale-in z-10"
                         style={{
                           left: `${event.coordinates.x}%`,
                           top: `${event.coordinates.y}%`,
@@ -701,10 +717,12 @@ export default function Index() {
                           animationDelay: `${index * 100}ms`
                         }}
                       >
-                        <div className={`w-4 h-4 rounded-full ${period?.color} shadow-lg group-hover:scale-150 transition-transform duration-300`}>
-                          <div className={`w-4 h-4 rounded-full ${period?.color} animate-ping opacity-75`}></div>
+                        <div className="relative">
+                          <div className={`w-5 h-5 rounded-full ${period?.color} shadow-lg group-hover:scale-150 transition-transform duration-300 border-2 border-white`}>
+                            <div className={`absolute inset-0 w-5 h-5 rounded-full ${period?.color} animate-ping opacity-75`}></div>
+                          </div>
                         </div>
-                        <div className="absolute left-6 top-0 bg-card border shadow-xl rounded-lg p-4 min-w-[280px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
+                        <div className="absolute left-8 top-0 bg-card border shadow-xl rounded-lg p-4 min-w-[280px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
                           <div className="space-y-2">
                             <Badge className={period?.color}>{Math.abs(event.year)} {event.year < 0 ? 'до н.э.' : 'н.э.'}</Badge>
                             <h4 className="font-heading font-bold text-lg">{event.title}</h4>
